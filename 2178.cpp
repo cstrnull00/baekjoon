@@ -10,8 +10,7 @@ int main() {
     int N, M;
     int** maze;
 
-    cin >> N;
-    cin >> M;
+    cin >> N >> M;
 
     maze = new int* [N];
     for (int i = 0; i < N; i++)
@@ -33,7 +32,7 @@ int main() {
 }
 
 int distance(int** maze, int N, int M) {
-    int d = 0;
+    int d = 1;
     pair<int, int> coordi(0,0);
 
     return d;
