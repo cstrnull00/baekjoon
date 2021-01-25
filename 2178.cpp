@@ -33,8 +33,26 @@ int main() {
 }
 
 int distance(int** maze, int N, int M) {
-    int d = 1;
-    pair<int, int> coordi(0,0);
+    int direction[4][2] = { {0,-1},{1,0},{0,1},{-1,0} };
+    pair<int, int> current;
+    queue <pair<int, int>> bfs;
+    int x, y;
 
-    return d;
+    bfs.push(make_pair(0,0));
+
+    while (!bfs.empty()) {
+        current = bfs.front();
+        bfs.pop();
+
+        for (int i = 0; i < 4; i++) {
+            x = current.second + direction[i][0];
+            y = current.first + direction[i][1];
+            if (x >= 0 && x < M && y >= 0 && y < N && maze[y][x] == 1) {
+                bfs.push(make_pair(y,x));
+                maze[y][x] = maze[current.first][current.second] + 1;
+            }
+        }
+    }
+
+    return maze[N - 1][M - 1];
 }
