@@ -1,48 +1,42 @@
-#include <cstdio>
 #include <iostream>
-#include <utility>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
-int virus(vector<pair<int,int>> network, int num, int pairs) {
-    int viru = 1;
-    vector<pair<int,int>> infection;
+int main() {
+	int n, m, u, v, cnt = 0;
+	int current, next;
+	bool visit[101];
+	vector<int> network[101];
+	queue<int> infection;
 
-    for(int i = 0; i < pairs ; i++)
-        if (network[i].first == 1) {
-            infection.push_back(network[i]);
-            network.erase(network.begin() + i);
-            viru++;
-            break;
-        }
+	cin >> n >> m;
 
-    while(!network.empty()){
-        for(int i = 0;i < pairs;i++)
-            if (infection[0].second == network[i].first) {
-                infection.push_back(network[i]);
-                network.erase(network.begin() + i);
-                viru++;
-                break;
-            }
-    }
+	for (int i = 0; i < m; i++) {
+		cin >> u >> v;
+		network[u].push_back(v);
+		network[v].push_back(u);
+	}
 
-    return viru;
-}
+	infection.push(1);
+	visit[1] = true;
 
-int main(){
-    int num, pairs, a, b;
-    vector <pair<int,int>> network;
+	while (!infection.empty()) {
+		current = infection.front();
+		infection.pop();
+		cnt++;
+		for (int i = 0; i < network[current].size(); i++) {
+			next = network[current][i];
+			if (!visit[next]) {
+				visit[next] = true;
+				infection.push(next);
+			}
+		}
 
-    cin >> num;
-    cin >> pairs;
+	}
 
-    for(int i = 0;i<pairs;i++){
-        scanf("%d %d",&a,&b);
-        network.push_back(make_pair(a, b));
-    }
+	cout << --cnt;
 
-    cout << virus(network, num, pairs) << endl;
-
-    return 0;
+	return 0;
 }
