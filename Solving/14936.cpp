@@ -3,21 +3,24 @@
 #include<iostream>
 #include<vector>
 
-void dijkstra() {
+#define _MAX 100001
 
+int button_state(int n, int m) {
+    int cnt = 0;
+    std::vector<bool> state;
+
+    for(int i = 0; i < n; i++)
+        state.push_back(false);
+
+    return cnt;
 }
 
-int main() {
-    int v, e, k, x, y, z;
-    std::vector<int> graph;
-    
-    std::cin >> v >> e >> k;
+int main() { 
+    int n, m;
 
-    for(int i = 0; i < e; i++) {
+    std::cin >> n >> m;
 
-    }
-
-    dijkstra();
+    std::cout << button_state(n, m);
 
     return 0;
 }
