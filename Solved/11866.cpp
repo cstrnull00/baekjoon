@@ -11,12 +11,11 @@ int main() {
 	cin >> n >> k;
 
 	queue<int> q;
-	for (int i = 0; i < n; i++) q.push(i);
-	
+	for (int i = 1; i <= n; i++) q.push(i);
+
 	vector<int> josephus;
 	int t = 1, c;
 	while (!q.empty()) {
-		cout << q << endl;
 		c = q.front();
 		q.pop();
 		if (t == k) {
@@ -28,7 +27,10 @@ int main() {
 	}
 
 	cout << "<";
-	for (auto i : josephus) cout << i << ", ";
+	for (auto i : josephus) {
+		cout << i;
+		if (i != josephus.back()) cout << ", ";
+	}
 	cout << ">";
 
 	return 0;
